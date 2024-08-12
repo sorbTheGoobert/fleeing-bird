@@ -2,7 +2,8 @@ function love.load()
     require("player")
     require("floor")
     require("pillar")
-    love.math.setRandomSeed(os.time())
+    math.randomseed(os.time())
+    GameOver = false
     Object = require "classic"
     pillars = {
         Pillar(1440 + 400 * 0, 1),
@@ -17,10 +18,12 @@ function love.load()
 end
 
 function love.update(dt)
-    love.math.setRandomSeed(os.time())
-    player.update(player, dt)
-    for i = 1, #pillars do
-        pillars[i].update(pillars[i], dt)
+    if not GameOver then
+        love.math.setRandomSeed(os.time())
+        player.update(player, dt)
+        for i = 1, #pillars do
+            pillars[i].update(pillars[i], dt)
+        end
     end
 end
 

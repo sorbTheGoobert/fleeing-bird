@@ -1,11 +1,11 @@
 player = {
     xPos = 100,
-    yPos = 325,
-    size = 50,
-    gravity = 30,
-    terminal = 700,
+    yPos = (700 - 40) / 2,
+    size = 40,
+    gravity = 20,
+    terminal = 1000,
     vertical_velocity = 0,
-    jump_speed = -500,
+    jump_speed = -800,
     jumpTimer = 0,
     draw = function (self)
         love.graphics.setColor(love.math.colorFromBytes(255, 255, 0))
@@ -28,6 +28,18 @@ player = {
             self.jumpTimer = self.jumpTimer + 1
         else
             self.jumpTimer = 0
+        end
+
+        -- collision
+        
+        -- ground
+        if self.yPos + self.size > 700 then
+            GameOver = true
+        end
+
+        -- pillars
+        if self.xPos then
+            
         end
 
         -- add speed
