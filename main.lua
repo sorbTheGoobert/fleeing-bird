@@ -1,6 +1,7 @@
 function love.load()
     require("player")
     require("floor")
+    Object = require "classic"
 end
 
 function love.update(dt)
