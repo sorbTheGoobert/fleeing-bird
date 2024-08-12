@@ -2,12 +2,13 @@ player = {
     xPos = 100,
     yPos = 325,
     size = 50,
-    gravity = 20,
-    terminal = 1500,
+    gravity = 30,
+    terminal = 700,
     vertical_velocity = 0,
-    jump_speed = -1000,
+    jump_speed = -500,
     jumpTimer = 0,
     draw = function (self)
+        love.graphics.setColor(love.math.colorFromBytes(255, 255, 0))
         love.graphics.rectangle("fill", self.xPos, self.yPos, self.size, self.size)
     end,
     update = function (self, dt)
