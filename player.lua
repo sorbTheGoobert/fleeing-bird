@@ -8,6 +8,7 @@ player = {
     jump_speed = -600,
     jumpTimer = 0,
     rotation = 0,
+    point = 0,
     draw = function(self)
         love.graphics.setColor(love.math.colorFromBytes(255, 255, 255))
         love.graphics.draw(globby, self.xPos + 15, self.yPos + 15, math.rad(self.rotation), 1.25, 1.25, 20, 20)
@@ -29,6 +30,7 @@ player = {
         if (love.keyboard.isDown("space") or love.keyboard.isDown("up") or love.mouse.isDown(1)) and self.jumpTimer == 0 then
             self.jumpTimer = self.jumpTimer + 1
             self.vertical_velocity = self.jump_speed
+            jumpSFX:play()
         elseif (love.keyboard.isDown("space") or love.keyboard.isDown("up") or love.mouse.isDown(1)) and self.jumpTimer > 0 then
             self.jumpTimer = self.jumpTimer + 1
         else
@@ -40,6 +42,8 @@ player = {
         -- ground
         if self.yPos + self.size > 700 then
             GameOver = true
+            death1SFX:play();
+            death2SFX:play();
         end
 
         -- pillars
@@ -53,6 +57,8 @@ player = {
                 )
             then
                 GameOver = true
+                death1SFX:play();
+                death2SFX:play();
             end
         elseif self.xPos > pillars[closestPillarIndex].xPos + pillars[closestPillarIndex].width then
             if closestPillarIndex < #pillars then
@@ -60,6 +66,8 @@ player = {
             else
                 closestPillarIndex = 1
             end
+            self.point = self.point + 1
+            scoreSFX:play()
         end
 
 
