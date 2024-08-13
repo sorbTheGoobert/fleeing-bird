@@ -2,12 +2,14 @@ function love.load()
     require("player")
     require("floor")
     require("pillar")
+    require("background")
     math.randomseed(os.time())
     Object = require "classic"
     globby = love.graphics.newImage("assets/globby.png")
     floorSprite = love.graphics.newImage("assets/floor.png")
+    backgroundImage = love.graphics.newImage("assets/background.jpg")
     GameOver = true
-    debugMode = true
+    debugMode = false
     closestPillarIndex = 1
     pillars = {
         Pillar(1440 + 400 * 0, 1),
@@ -23,7 +25,7 @@ end
 
 function love.update(dt)
     if not GameOver then
-        love.math.setRandomSeed(os.time())
+        background.update(background, dt)
         player.update(player, dt)
         for i = 1, #pillars do
             pillars[i].update(pillars[i], dt)
@@ -46,6 +48,7 @@ function love.update(dt)
 end
 
 function love.draw()
+    background.draw(background)
     for i = 1, #pillars do
         pillars[i].draw(pillars[i])
     end

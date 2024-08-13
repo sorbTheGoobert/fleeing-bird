@@ -44,9 +44,9 @@ player = {
 
         -- pillars
         if (
-            self.xPos + self.size > pillars[closestPillarIndex].xPos and
-            self.xPos < pillars[closestPillarIndex].xPos + pillars[closestPillarIndex].width
-        ) then
+                self.xPos + self.size > pillars[closestPillarIndex].xPos and
+                self.xPos < pillars[closestPillarIndex].xPos + pillars[closestPillarIndex].width
+            ) then
             if not (
                     self.yPos > pillars[closestPillarIndex].yPos and
                     self.yPos + self.size < pillars[closestPillarIndex].yPos + 200
@@ -69,10 +69,10 @@ player = {
         -- rotation
         self.rotation = self.vertical_velocity * dt * 2
         if self.rotation < -45 then
-           self.rotation = -45 
+            self.rotation = -45
         end
         if self.rotation > 75 then
-           self.rotation = 75 
+            self.rotation = 75
         end
     end
 }
