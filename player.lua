@@ -10,7 +10,7 @@ player = {
     rotation = 0,
     draw = function(self)
         love.graphics.setColor(love.math.colorFromBytes(255, 255, 255))
-        love.graphics.draw(globby, self.xPos + 15, self.yPos + 15, math.rad(self.rotation), 1, 1, 20, 20)
+        love.graphics.draw(globby, self.xPos + 15, self.yPos + 15, math.rad(self.rotation), 1.25, 1.25, 20, 20)
         if debugMode then
             love.graphics.setColor(love.math.colorFromBytes(255, 0, 0))
             love.graphics.rectangle("line", self.xPos, self.yPos, self.size, self.size)
@@ -68,5 +68,11 @@ player = {
 
         -- rotation
         self.rotation = self.vertical_velocity * dt * 2
+        if self.rotation < -45 then
+           self.rotation = -45 
+        end
+        if self.rotation > 75 then
+           self.rotation = 75 
+        end
     end
 }
