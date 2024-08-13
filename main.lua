@@ -3,7 +3,10 @@ function love.load()
     require("floor")
     require("pillar")
     math.randomseed(os.time())
-    GameOver = false
+    globby = love.graphics.newImage("assets/globby.png")
+    GameOver = true
+    debugMode = true
+    closestPillarIndex = 1
     Object = require "classic"
     pillars = {
         Pillar(1440 + 400 * 0, 1),
@@ -24,13 +27,20 @@ function love.update(dt)
         for i = 1, #pillars do
             pillars[i].update(pillars[i], dt)
         end
+    elseif GameOver and (love.keyboard.isDown("space") or love.keyboard.isDown("up") or love.mouse.isDown(1)) then
+        GameOver = false
     end
 end
 
 function love.draw()
-    floor.draw(floor)
-    player.draw(player)
     for i = 1, #pillars do
         pillars[i].draw(pillars[i])
     end
+    floor.draw(floor)
+    player.draw(player)
+    love.graphics.print(closestPillarIndex, 10, 10)
+    -- love.graphics.print(pillars[closestPillarIndex].xPos, 10, 10)
+    -- love.graphics.print(player.xPos, 10, 30)
+    -- love.graphics.print(player.size, 10, 50)
+    -- love.graphics.print(tostring(GameOver), 10, 70)
 end

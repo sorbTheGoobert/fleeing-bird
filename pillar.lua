@@ -1,4 +1,4 @@
-object = require "classic"
+local object = require "classic"
 Pillar = object.extend(object)
 
 function Pillar.new(self, xPos, index)
@@ -22,7 +22,9 @@ function Pillar.update(self, dt)
 end
 
 function Pillar.draw(self)
-    love.graphics.setColor(love.math.colorFromBytes(0, 255, 100))
-    love.graphics.rectangle("fill", self.xPos, 0, self.width, self.yPos)
-    love.graphics.rectangle("fill", self.xPos, self.yPos + 200, self.width, 700 - self.yPos - 200)
+    if debugMode then
+        love.graphics.setColor(love.math.colorFromBytes(0, 255, 100))
+        love.graphics.rectangle("line", self.xPos, 0, self.width, self.yPos)
+        love.graphics.rectangle("line", self.xPos, self.yPos + 200, self.width, 700 - self.yPos - 200)
+    end
 end
