@@ -46,6 +46,13 @@ player = {
             death2SFX:play();
         end
 
+        -- ceiling
+        if self.yPos < 0 then
+            GameOver = true
+            death1SFX:play();
+            death2SFX:play();
+        end
+
         -- pillars
         if (
                 self.xPos + self.size > pillars[closestPillarIndex].xPos and
